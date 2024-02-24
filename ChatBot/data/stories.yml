@@ -1,0 +1,73 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+#
+# (2) Functional stories
+#
+- story: get word
+  steps:
+    - intent: request_word
+    - action: action_get_word
+
+# - story: get inspirational sentence
+#   steps:
+#   - user: "Explain the basic usage of the app, please."
+#   - action: utter_explain_usage
+
+#
+# (3) Complementary 
+#
+- story: know the app
+  steps:
+    - intent: explain_lexigraph
+    - action: utter_explain_lexigraph
+
+- story: User understands a movie reference
+  steps:
+  - intent: special_greeting
+  - action: utter_movie_reference
+  - intent: affirm
+  - action: utter_movie_compliment
+  - action: utter_question_user
+
+- story: User does NOT understand a movie reference
+  steps:
+  - intent: special_greeting
+  - action: utter_movie_reference
+  - intent: deny
+  - action: utter_movie_inform
+  - action: utter_question_user
+
+
+
+
+
+    
