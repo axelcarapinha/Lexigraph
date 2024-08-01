@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     />
 
-    <!-- The child template will be able to change this base template (as it's a block) -->
+    <!-- The "child template" will be able to change this base template (as it's a block) -->
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
@@ -42,6 +42,35 @@
         </div>
       </div>
     </nav>
+
+    <!-- Looping because there could be more than 1 message at the same time-->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+
+        {% if category == 'error' %}
+          <div class="alert alert-danger alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span> <!-- Nice-looking cross XD -->
+            </button>
+          </div>
+        {% else %} <!-- (Success) -->
+          <div class="alert alert-success alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert">
+              <span aria-hidden="true">&times;</span> <!-- Nice-looking cross XD -->
+            </button>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
  
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

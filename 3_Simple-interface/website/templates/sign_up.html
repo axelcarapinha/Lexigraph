@@ -1,0 +1,62 @@
+{% extends "base.html" %} 
+{% block title %}Sign_up {% endblock %} 
+
+{% block content %}
+
+<form method="POST"> <!-- Send a POST to the backend when we use the form -->
+    <h3 align="center">Sign Up</h3>
+
+    <!-- 'name' == name of the variable (for the backend part) -->
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Enter email"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          placeholder="Enter first name"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="password1">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="passwordFirst"
+          name="passwordFirst"
+          placeholder="Enter password"
+        />
+    </div>
+
+    <div class="form-group">
+        <label for="password2">Password (Confirm)</label>
+        <input
+          type="password"
+          class="form-control"
+          id="passwordConfirmation"
+          name="passwordConfirmation"
+          placeholder="Confirm password"
+        />
+    </div>
+
+
+    <br />
+
+    <!-- Using bootstrap again (btn btn-primary) -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+{% endblock %}
