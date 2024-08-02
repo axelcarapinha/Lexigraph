@@ -7,7 +7,9 @@
     <ul class="list-group list-group-flush" id="words"> <!-- ul == "unordered list" -->
     {% for word in user.words %}
         <li class="list-group-item">
-            {{ word.data }}
+            {{ word.data + "EXTRA\n" }}
+            {{ word.data + "EXTRA" }}
+
 
             <!-- Button to delete the word -->
             <button type="button" class="close" onClick="deleteWord({{ word.id }})">

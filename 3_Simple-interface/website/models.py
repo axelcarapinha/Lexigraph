@@ -9,6 +9,8 @@ class Word(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
 
+    # meaning = db.Column(db.String)
+
 #TODO (or consider using the AnkiWeb API)
 # class SpacedRepetition()
 

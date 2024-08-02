@@ -1,7 +1,7 @@
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 
-def get_word_info_json():
+def get_word_info(user_context, word):
     template = """
     Follow the instrcutions below, considering you are
     an expert on english vocabulary.
@@ -23,5 +23,11 @@ def get_word_info_json():
     prompt = ChatPromptTemplate.from_template(template)
     chain = prompt | model # the model will be invoked automatically (the pipe is similar to Linux)
 
-    result = chain.invoke({"user_context": "Computer Networks and Cybersecurity", "word": "Passion"})
+    result = chain.invoke({"user_context": {user_context}, "word": {word}})
     return result
+
+
+
+# user_context = "Computer Networks and Cybersecurity"
+# word = "passion"
+# print(get_word_info_json(user_context, word))
