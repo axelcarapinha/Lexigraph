@@ -5,19 +5,30 @@
     <h1 align="center">Words</h1>
 
     <ul class="list-group list-group-flush" id="words"> <!-- ul == "unordered list" -->
-    {% for word in user.words %}
-        <li class="list-group-item">
-            {{ word.word_info['meaning'] }}
+        {% for word in user.words %}
+            <li class="list-group-item">
+                <u>Word</u>: {{ word.data }}
+                <br>
+                <u>Meaning</u>: {{ word.word_info.definition }}
+                <br>
+                <ul>
+                    {% for sentence in word.word_info.dialog %}
+                        <li>
+                            <strong>Bob:</strong> {{ sentence.person1 }}
+                            <br>
+                            <strong>Alice:</strong> {{ sentence.person2 }}
+                            <br>
+                        </li>
+                    {% endfor %}
+                </ul>
 
+                <!-- Button to delete the word -->
+                <button type="button" class="close" onClick="deleteWord({{ word.id }})">
+                <span aria-hidden="true">&times;</span>
+                </button>
 
-
-            <!-- Button to delete the word -->
-            <button type="button" class="close" onClick="deleteWord({{ word.id }})">
-            <span aria-hidden="true">&times;</span>
-            </button>
-
-        </li> <!-- li == list item (so that it looks nicer) -->
-    {% endfor %}
+            </li> <!-- li == list item (so that it looks nicer) -->
+        {% endfor %}
     </ul>
     
     <!-- See if great -->
