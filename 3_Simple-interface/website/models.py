@@ -1,15 +1,15 @@
 import config
 from . import db # importing from the __init__.py
 from flask_login import UserMixin 
-from sqlalchemy.sql import func # for the func.now()
+from sqlalchemy.sql import func # for func.now()
+from sqlalchemy.types import JSON
 
 class Word(db.Model):
     id = db.Column(db.Integer, primary_key=True) # has autoincrement (default)
     data = db.Column(db.String(config.MAX_LEN_WORD))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
-
-    # meaning = db.Column(db.String)
+    word_info = db.Column(JSON)
 
 #TODO (or consider using the AnkiWeb API)
 # class SpacedRepetition()

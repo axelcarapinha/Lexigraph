@@ -5,6 +5,8 @@ from . import db
 from .models import Word
 import json
 
+from .api_request import api_request_info_word
+
 views = Blueprint('views', __name__)
 
 @views.route('/', methods=['GET', 'POST'])
@@ -16,7 +18,9 @@ def home():
         if len(word) < config.MIN_LEN_WORD:
             flash('Word is too short.', category='error')
         else: # provide the schema for the note and add to the database
-            new_word = Word(data=word, user_id=current_user.id) 
+            new_word = Word(data=word, user_id=current_user.id, word_info=api_request_info_word(current_user.id, word)) 
+            #TODO consider using threads
+
             db.session.add(new_word)
             db.session.commit() # analog to the commit of PostgreSQL
             flash('Word added!', category='success')

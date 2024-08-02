@@ -7,8 +7,8 @@
     <ul class="list-group list-group-flush" id="words"> <!-- ul == "unordered list" -->
     {% for word in user.words %}
         <li class="list-group-item">
-            {{ word.data + "EXTRA\n" }}
-            {{ word.data + "EXTRA" }}
+            {{ word.word_info['meaning'] }}
+
 
 
             <!-- Button to delete the word -->

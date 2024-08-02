@@ -17,3 +17,5 @@ MAX_LEN_USERNAME = 100
 
 MIN_LEN_WORD = 1
 MAX_LEN_WORD = 100 # 55 (buffer) + 45 (pneumonoultramicroscopicsilicovolcanoconiosis, the longest word in the English dictionary, in 2024)
+
+BASE_API_WORD = "http://127.0.0.1:5001/" # base URL for the API responsible for word info
