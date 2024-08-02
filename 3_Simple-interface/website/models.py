@@ -11,14 +11,11 @@ class Word(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
     word_info = db.Column(JSON)
 
-#TODO (or consider using the AnkiWeb API)
-# class SpacedRepetition()
 
-
-#TODO confirm some values (max number of chars for email, ...)
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(config.MAX_LEN_EMAIL), unique=True)
     password = db.Column(db.String(config.MAX_LEN_PASSWORD))
     username = db.Column(db.String(config.MAX_LEN_USERNAME))
     words = db.relationship('Word') # SQLAlchemy needs a capital key in this case
+    occupation = db.Column(db.String(config.MAX_LEN_OCCUPATION))

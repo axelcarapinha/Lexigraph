@@ -42,20 +42,26 @@ def sign_up():
         username = request.form.get('username')
         password_first = request.form.get('passwordFirst')
         password_confirmation = request.form.get('passwordConfirmation')
+        occupation = request.form.get('occupation')
 
         user = User.query.filter_by(email=email).first() 
 
+        #TODO add more sanizitization (for the occupation, for example)
         # Sanitize user data
         if user:
             flash('Email already in use.', category='error')
         elif len(email) < config.MIN_LEN_EMAIL:
             flash(f'Email must be greather than {config.MIN_LEN_EMAIL - 1} characters.', category='error')
         elif len(username) < config.MIN_LEN_USERNAME:
-            flash(f'First name should be greather than {config.MIN_LEN_USERNAME - 1} characters.', category='error')
+            flash(f'First name should have at least {config.MIN_LEN_USERNAME} characters.', category='error')
         elif password_first != password_confirmation:
             flash('Passwords do NOT match.', category='error')
         elif len(password_first) < config.MIN_LEN_PASSWORD: #TODO add more rules and tips for the password field
-            flash(f'Password should have at least {config.MIN_LEN_PASSWORD - 1} characters.', category='error')
+            flash(f'Password should have at least {config.MIN_LEN_PASSWORD} characters.', category='error')
+        elif len(occupation) < config.MIN_LEN_OCCUPATION:
+            flash(f'Occupation should have at least {config.MIN_LEN_OCCUPATION} characters.', category='error')
+        elif len(occupation) > config.MAX_LEN_OCCUPATION:
+            flash(f'Occupation cannot have more than {config.MAX_LEN_OCCUPATION} characters.', category='error')
         else: # add user to the database
             '''
             (1) Unique salt is generated (wth a pseudo-random function)
@@ -65,13 +71,13 @@ def sign_up():
             (3) Iterative hashing: PBKDF2 applies the pseudorandom function multiple times (iterations),
                 which increases the computational cost to perform brute-force attacks on the hashed password.
             '''
-            new_user = User(email=email, username=username, password=generate_password_hash(password_first, method='pbkdf2:sha256'))
+            new_user = User(email=email, username=username, password=generate_password_hash(password_first, method='pbkdf2:sha256'), occupation=occupation)
 
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
 
-            flash("Account creation SUCCESSFUL", category='success')
+            flash("Account creation successfull. Welcome!", category='success')
             return redirect(url_for('views.home')) # finding the URL associating with this function
             
     return render_template("sign_up.html", user=current_user)

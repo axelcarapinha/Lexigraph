@@ -31,7 +31,7 @@ def home():
 @views.route('/delete-word', methods=['POST'])
 def delete_word():
     word = json.loads(request.data)
-    wordId = word['wordId'] #TODO consider if here
+    wordId = word['wordId'] 
     word = Word.query.get(wordId)
     if word:
         if word.user_id == current_user.id:
