@@ -1,1 +1,3 @@
 POLL_INTERVAL = 3
+URL_LEXIGRAPH_WEBSITE = 'http://localhost:54321'
+URL_API_ANKI = 'http://127.0.0.1:8765'
