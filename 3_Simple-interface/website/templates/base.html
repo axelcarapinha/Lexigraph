@@ -4,6 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Lexigraph's logo -->
+    <link 
+      rel="shortcut icon" 
+      type="x-icon" 
+      href="../static/logo-lexigraph-3.png"
+    />
+
     <!-- For Bootstrap CSS styling -->
     <link
       rel="stylesheet"
@@ -37,7 +44,9 @@
         <div class="navbar-nav">
           <!-- This is received from the views.py file -->
           {% if user.is_authenticated %}
-            <a class="nav-item nav-link" id="home" href="/">Home</a>
+            <a class="nav-item nav-link" id="home" href="/">
+              <img src="../static/logo-lexigraph-3.png" alt="Home" style="height: 30px; width: 30px;">
+            </a>
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
           {% else %}
             <a class="nav-item nav-link" id="login" href="/login">Login</a>
