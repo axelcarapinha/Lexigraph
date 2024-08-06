@@ -25,4 +25,4 @@ BASE_API_WORD = "http://127.0.0.1:5001/" # base URL for the API responsible for 
 MIN_LEN_OCCUPATION = 1
 MAX_LEN_OCCUPATION = 50
 
-ANKI_DECK_NAME = 'Default'
+ANKI_DECK_NAME = 'Example'

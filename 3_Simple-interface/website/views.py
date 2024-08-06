@@ -58,3 +58,7 @@ def get_card_notes(word_id):
             'word': word.data
         })
     return jsonify({'error': 'Word not found or access denied'}), 404
+
+@views.route('/about', methods=['GET'])
+def about():
+    return render_template("about.html", user=current_user)

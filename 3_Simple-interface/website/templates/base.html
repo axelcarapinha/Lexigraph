@@ -24,6 +24,24 @@
       crossorigin="anonymous"
     />
 
+    <style>
+      .navbar-nav {
+        display: flex;
+        align-items: center;
+        height: 100%; 
+      }
+  
+      .navbar-nav .nav-item {
+        margin: 0 15px; 
+      }
+  
+      .navbar-nav .nav-link {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+    </style>
+
     <!-- The "child template" will be able to change this base template (as it's a block) -->
     <title>{% block title %}Home{% endblock %}</title>
   </head>
@@ -45,12 +63,14 @@
           <!-- This is received from the views.py file -->
           {% if user.is_authenticated %}
             <a class="nav-item nav-link" id="home" href="/">
-              <img src="../static/logo-lexigraph-3.png" alt="Home" style="height: 30px; width: 30px;">
+              <img src="../static/logo-lexigraph-3.png" alt="Home" style="height: 50px; width: 50px; border-radius: 50%;">
             </a>
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+            <a class="nav-item nav-link" id="about" href="/about">About</a>
           {% else %}
             <a class="nav-item nav-link" id="login" href="/login">Login</a>
             <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+            <a class="nav-item nav-link" id="about" href="/about"> About</a>
           {% endif %}
         </div>
       </div>
