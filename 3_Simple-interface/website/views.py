@@ -1,11 +1,11 @@
 import config
-from flask import Blueprint, render_template, request, flash, jsonify
+import json
+from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import login_required, current_user
 from . import db
 from .models import Word
-import json
-
 from .api_request import api_request_info_word
+from .api_anki import api_anki_get_card_notes
 
 views = Blueprint('views', __name__)
 
@@ -17,13 +17,21 @@ def home():
 
         if len(word) < config.MIN_LEN_WORD:
             flash('Word is too short.', category='error')
-        else: # provide the schema for the note and add to the database
-            new_word = Word(data=word, user_id=current_user.id, word_info=api_request_info_word(current_user.id, word)) 
-            #TODO consider using threads
+            return redirect(url_for('views.home'))  # Redirect to the same page without flag
 
-            db.session.add(new_word)
-            db.session.commit() # analog to the commit of PostgreSQL
-            flash('Word added!', category='success')
+        # Create a dialog from the word
+        word_info  = api_request_info_word(current_user.occupation, word)
+        card_notes = api_anki_get_card_notes(word, word_info)
+
+        # Add to the known cards of the user
+        new_word = Word(data=word, user_id=current_user.id, word_info=word_info, card_notes=card_notes)
+        db.session.add(new_word)
+        db.session.commit()
+
+        flash('Word added!', category='success')
+
+        # Redirect with a query parameter indicating success
+        return redirect(url_for('views.home', reloaded='true'))
 
     return render_template("home.html", user=current_user)
 
@@ -38,5 +46,15 @@ def delete_word():
             db.session.delete(word)
             db.session.commit()
 
-    return jsonify({}) # an empty response 
-    
+    return jsonify({}) # an empty response
+
+@views.route('/get-card-notes/<int:word_id>', methods=['GET'])
+@login_required
+def get_card_notes(word_id):
+    word = Word.query.get(word_id)
+    if word and word.user_id == current_user.id:
+        return jsonify({
+            'card_notes': word.card_notes,
+            'word': word.data
+        })
+    return jsonify({'error': 'Word not found or access denied'}), 404

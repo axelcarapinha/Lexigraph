@@ -3,4 +3,4 @@ from website import create_app # importing what I need from the created Python p
 app = create_app()
 
 if __name__ == '__main__': # only RUNNING this file, it runs the server (NOT importing)
-    app.run(debug=True) #TODO turn off, when running in production
+    app.run(debug=True, port=8081) #TODO turn off, when running in production

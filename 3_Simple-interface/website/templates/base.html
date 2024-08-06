@@ -11,7 +11,7 @@
       href="../static/logo-lexigraph-3.png"
     />
 
-    <!-- For Bootstrap CSS styling -->
+    <!-- Bootstrap CSS styling -->
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -57,6 +57,7 @@
     </nav>
 
     <!-- Looping because there could be more than 1 message at the same time-->
+    <!--TODO Change the name from "message" -->
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
@@ -102,5 +103,6 @@
 
     <!-- Utility JS functions (to delete a word, ...) -->
     <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <!-- <script src="../static/index.js"></script> -->
   </body>
 </html>

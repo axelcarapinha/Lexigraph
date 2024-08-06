@@ -10,6 +10,7 @@ class Word(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) 
     word_info = db.Column(JSON)
+    card_notes = db.Column(JSON)
 
 
 class User(db.Model, UserMixin):
