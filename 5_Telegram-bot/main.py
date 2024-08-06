@@ -58,7 +58,7 @@ async def add_word_to_deck(input_user_context, input_word):
     dialog_parts = word_obj.get('dialog', [])
 
     # Create the ANKI card
-    deck_name = "test1" #TODO change this
+    deck_name = config.DECK_NAME
     model_name = "basic"
     front_text = f"{input_word}"
 
