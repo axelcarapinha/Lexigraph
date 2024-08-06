@@ -50,9 +50,11 @@ async def command_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(response)
 
 async def add_word_to_deck(input_user_context, input_word):
+    print(f"[INFO] [CMD ADD] Adding word '{input_word}' to the deck '{config.DECK_NAME}'.")
+
     # Create a dialg and meaning with that word
     # TODO: Replace with actual API request
-    word_obj = api_request_info_word(input_user_context, input_word)
+    word_obj = api_request_info_word(input_user_context, input_word.lower())
 
     # Extract dialog parts from the word object
     dialog_parts = word_obj.get('dialog', [])
@@ -91,7 +93,7 @@ async def add_word_to_deck(input_user_context, input_word):
     '''
 
     tags = ["lexigraph"]
-    audio_url = "url_audio"
+    audio_url = f"http://127.0.0.1:5001/wordpronounce/{front_text}"
     audio_filename = "filename_audio.mp3"
     video_url = "url_video"
     video_filename = "filename_video.mp4"
@@ -107,12 +109,12 @@ async def add_word_to_deck(input_user_context, input_word):
             "Back": back_text
         },
         "tags": tags,
-        # "audio": [{
-        #     "url": url_audio,
-        #     "filename": filename_audio,
-        #     "skipHash": "skip_hash",  
-        #     "fields": ["Front"]
-        # }],
+        "audio": [{
+            "url": audio_url,
+            "filename": f'{front_text}.mp3',
+            "skipHash": "skip_hash",  
+            "fields": ["Front"]
+        }],
         # "video": [{
         #     "url": url_video,
         #     "filename": filename_video,
@@ -128,14 +130,8 @@ async def add_word_to_deck(input_user_context, input_word):
     }]
 
     # Send request to AnkiConnect's API (to add the card to the deck)
-    response = invoke('addNotes', notes=notes)
-    result = json.loads(response) #TODO backup that JSON file (if ANKI does NOT export that)
-
-    # Handle the response
-    text = '[INFO] [CMD ADD] Cards added!' if result.get("error") is None else '[ERROR] [CMD ADD] adding the cards. Please, try again.'
-    print(text)
-
-    return text
+    result = invoke('addNotes', notes=notes)
+    return result
 
 async def command_add_word(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Get the desired word and its meaning
@@ -268,5 +264,5 @@ if __name__ == '__main__':
     app.add_error_handler(error)
 
     # Polls the bot for incoming requests
-    print(f'[INFO] Polling {BOT_USERNAME}''s bot')
+    print(f'[INFO] Polling {BOT_USERNAME}''s bot.')
     app.run_polling(poll_interval=config.POLL_INTERVAL)
