@@ -61,4 +61,4 @@ def get_card_notes(word_id):
 
 @views.route('/about', methods=['GET'])
 def about():
-    return render_template("about.html", user=current_user)
+    return redirect(config.URL_ABOUT_PAGE)

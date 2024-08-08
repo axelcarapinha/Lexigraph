@@ -26,3 +26,5 @@ MIN_LEN_OCCUPATION = 1
 MAX_LEN_OCCUPATION = 50
 
 ANKI_DECK_NAME = 'Example'
+
+URL_ABOUT_PAGE = "https://axelcarapinha.github.io/lexigraph/docs/"
