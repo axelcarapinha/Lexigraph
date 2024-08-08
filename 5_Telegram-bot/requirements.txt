@@ -1,4 +1,0 @@
-python-telegram-bot
-python-dotenv
-markdown2
-requests # for Button sending in the Telegram bot
