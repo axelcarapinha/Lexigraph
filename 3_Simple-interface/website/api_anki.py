@@ -60,12 +60,12 @@ def api_anki_get_card_notes(input_word, info_word):
         },
         "tags": tags,
         #TODO
-        # "audio": [{
-        #     "url": audio_url,
-        #     "filename": f'{front_text}.mp3',
-        #     "skipHash": "skip_hash",  
-        #     "fields": ["Front"]
-        # }],
+        "audio": [{
+            "url": audio_url,
+            "filename": f'{front_text}.mp3',
+            "skipHash": "skip_hash",  
+            "fields": ["Front"]
+        }],
     }]
 
     return notes

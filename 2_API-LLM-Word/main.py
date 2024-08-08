@@ -1,7 +1,8 @@
-from flask import Flask, jsonify
-from flask_restful import Api, Resource
-from llm_prompt import get_word_info
 import json
+from flask import Flask, jsonify, send_file, after_this_request
+from flask_restful import Api, Resource
+from llm_prompt import get_word_info, get_word_pronounce
+import os
 
 app = Flask(__name__)
 api = Api(app)
@@ -18,7 +19,25 @@ class WordInfo(Resource):
         
         return jsonify(data)
 
-api.add_resource(WordInfo, "/wordinfo/<string:context>/<string:word>") # proper route
+class WordPronounce(Resource):
+    def get(self, word):
+        try:
+            file_path = get_word_pronounce(word)
+            
+            @after_this_request
+            def cleanup(response): # clean the audio file after the GET request
+                try:
+                    os.remove(file_path)
+                except Exception as e:
+                    app.logger.error(f"Error deleting file: {e}")
+                return response
+
+            return send_file(file_path)
+        except Exception as e:
+            return {"error": "An error occurred", "details": str(e)}, 500
+
+api.add_resource(WordInfo, "/wordinfo/<string:context>/<string:word>")
+api.add_resource(WordPronounce, "/wordpronounce/<string:word>")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)

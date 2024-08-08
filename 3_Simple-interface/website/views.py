@@ -27,6 +27,7 @@ def home():
         new_word = Word(data=word, user_id=current_user.id, word_info=word_info, card_notes=card_notes)
         db.session.add(new_word)
         db.session.commit()
+
         flash('Word added!', category='success')
 
         # Redirect with a query parameter indicating success
