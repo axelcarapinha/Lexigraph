@@ -22,6 +22,8 @@ MAX_LEN_WORD = 100 # 55 (buffer) + 45 (pneumonoultramicroscopicsilicovolcanoconi
 
 BASE_API_WORD = "http://127.0.0.1:5001/" # base URL for the API responsible for word info
 
+
+
 MIN_LEN_OCCUPATION = 1
 MAX_LEN_OCCUPATION = 50
 
