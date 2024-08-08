@@ -26,7 +26,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <!-- Ensure this button has the correct word ID -->
-                <button type="button" class="btn btn-primary" onClick="addCardToAnki(this, {{ word.id }})">
+                <button type="button" class="btn btn-primary" onClick="addCardToAnki({{ word.id }})">
                     <!--TODO Insert check mark if added -->
                     Add to Anki
                 </button>
@@ -71,7 +71,7 @@
             });
         }
 
-        function addCardToAnki(button, wordId) {
+        function addCardToAnki(wordId) {
             fetch(`/get-card-notes/${wordId}`)
             .then(response => response.json())
             .then(data => {
