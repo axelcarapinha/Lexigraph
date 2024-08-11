@@ -53,6 +53,7 @@ def api_anki_get_card_notes(input_word, info_word):
     picture_filename = "filename_pictre.jpg"
 
     # Get the pronounce file
+    #TODO send from the other side, receive it here, prepare API call to list files (WebAnki requests the file, you send it from THE MAIN WEBSITE)
 
 
     # Complete the nodes JSON

@@ -27,54 +27,80 @@ function deleteWord(wordId) {
 }
 
 function addCardToAnki(wordId) {
-  fetch(`/get-card-notes/${wordId}`)
-  .then(response => response.json())
-  .then(data => {
-      if (data.error) {
-          alert('Error fetching card notes: ' + data.error);
-          return;
-      }
+    // Requests permission to use AnkiConnect API (https://foosoft.net/projects/anki-connect/)
+    const requestPermission = JSON.stringify({
+        action: 'requestPermission',
+        version: 6
+    });
 
-      const cardNotes = data.card_notes;
-      if (cardNotes.length === 0) {
-          alert('No card notes found.');
-          return;
-      }
+    fetch('http://127.0.0.1:8765', { // assumes that Anki is running on the user machine
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: requestPermission
+    })
+    .then(response => response.json())
+    .then(permissionData => {
+        if (permissionData.permission === 'granted') {
 
-      // Extract the first note from cardNotes
-      const cardNote = cardNotes[0];
-      const cardNoteString = JSON.stringify({
-          action: 'addNote',
-          version: 6,
-          params: {
-              note: cardNote
-          }
-      });
+            // Adds the card to Anki's database using Ankiconnect
+            fetch(`/get-card-notes/${wordId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Error fetching card notes: ' + data.error);
+                    return;
+                }
 
-      // Make a POST request to AnkiConnect's API
-      fetch('http://127.0.0.1:8765', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: cardNoteString
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.error) {
-              alert('Error adding card: ' + data.error);
-          } else {
-              console.log('Success:', data);
-              alert('Card added successfully: ' + JSON.stringify(data));
-          }
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          alert('An error occurred: ' + error);
-      });
-  })
-  .catch(error => {
-      console.error('Error:', error);
-      alert('Failed to fetch card notes');
-  });
+                const cardNotes = data.card_notes;
+                if (cardNotes.length === 0) {
+                    alert('No card notes found.');
+                    return;
+                }
+
+                // Extract the first note from cardNotes
+                const cardNote = cardNotes[0];
+                const cardNoteString = JSON.stringify({
+                    action: 'addNote',
+                    version: 6,
+                    params: {
+                        note: cardNote
+                    }
+                });
+
+                // Make a POST request to AnkiConnect's API
+                fetch('http://127.0.0.1:8765', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: cardNoteString
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert('Error adding card: ' + data.error);
+                    } else {
+                        console.log('Success:', data);
+                        alert('Card added successfully: ' + JSON.stringify(data));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred: ' + error);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to fetch card notes');
+            });
+        } else {
+            alert('Permission to use AnkiConnect was denied.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to request permission from AnkiConnect: ' + error);
+    });
 }
