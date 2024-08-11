@@ -64,4 +64,4 @@ jobs:
         with:
           app-name: 'lexigraph'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E609037209214DB39EA8E25AF400AEFF }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_485BBBF805F448C3B6B69EE5B5BDC380 }}
