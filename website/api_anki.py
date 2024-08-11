@@ -45,7 +45,7 @@ def api_anki_get_card_notes(input_word, info_word):
 
     # Build the JSON for the card
     tags = ["lexigraph"]
-    audio_url = f"https://10.0.0.20:5001/wordpronounce/{front_text}"
+    audio_url = f"http://10.0.0.20:5001/wordpronounce/{front_text}"
     audio_filename = "filename_audio.mp3"
     video_url = "url_video"
     video_filename = "filename_video.mp4"

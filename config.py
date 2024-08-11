@@ -20,7 +20,7 @@ MAX_LEN_USERNAME = 100
 MIN_LEN_WORD = 1
 MAX_LEN_WORD = 100 # 55 (buffer) + 45 (pneumonoultramicroscopicsilicovolcanoconiosis, the longest word in the English dictionary, in 2024)
 
-BASE_API_WORD = "https://10.0.0.20:5001/" # base URL for the API responsible for word info
+BASE_API_WORD = "http://10.0.0.20:5001/" # base URL for the API responsible for word info
 #TODO hardcoded where the API request to the audio is done. CORRECT IT.
 
 
