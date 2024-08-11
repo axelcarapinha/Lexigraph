@@ -51,6 +51,11 @@ def api_anki_get_card_notes(input_word, info_word):
     video_filename = "filename_video.mp4"
     picture_url = "url_picture"
     picture_filename = "filename_pictre.jpg"
+
+    # Get the pronounce file
+
+
+    # Complete the nodes JSON
     notes = [{
         "deckName": deck_name,
         "modelName": model_name,
@@ -60,12 +65,12 @@ def api_anki_get_card_notes(input_word, info_word):
         },
         "tags": tags,
         #TODO
-        "audio": [{
-            "url": audio_url,
-            "filename": f'{front_text}.mp3',
-            "skipHash": "skip_hash",  
-            "fields": ["Front"]
-        }],
+        # "audio": [{
+        #     "url": audio_url,
+        #     "filename": f'{front_text}.mp3',
+        #     "skipHash": "skip_hash",  
+        #     "fields": ["Front"]
+        # }],
     }]
 
     return notes
