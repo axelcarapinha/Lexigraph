@@ -60,6 +60,7 @@ def create_app():
 
 def create_database(app):
     with app.app_context():  # ensuring we are within our 'app' contxt
-        if not path.exists('website/' + config.DATABASE_NAME):
+        # if not path.exists('website/' + config.DATABASE_NAME):
+        if not path.exists('website/database.db'):
             db.create_all() 
             print('[INFO] Database created.')

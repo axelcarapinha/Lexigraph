@@ -4,7 +4,6 @@ MIN_LEN_PASSWORD = 15
 # Even though NIST recommends a minimum of 8 for this case (topic 5.1.1.1)
 # https://pages.nist.gov/800-63-3/sp800-63b.html
 
-
 MAX_LEN_PASSWORD = 300
 #TODO: confirm if special characters are NOT recommended by NIST, and search for a max
 

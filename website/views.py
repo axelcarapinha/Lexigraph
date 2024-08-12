@@ -1,5 +1,6 @@
 import config
 import json
+from flask import current_app as app
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import login_required, current_user
 from . import db
@@ -12,7 +13,7 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    print("[INFO] A new user arrived.")
+    app.logger.info('A new user arrived.') # prompts the Ollama's VM to start running
 
     if request.method == 'POST':
         word = request.form.get('word')
