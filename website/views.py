@@ -12,6 +12,8 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
+    print("[INFO] A new user arrived.")
+
     if request.method == 'POST':
         word = request.form.get('word')
 
@@ -33,6 +35,7 @@ def home():
         # Redirect with a query parameter indicating success
         return redirect(url_for('views.home', reloaded='true'))
 
+    # Power Up the VM with an Azure's Runbook (because it's a GET request)
     return render_template("home.html", user=current_user)
 
 

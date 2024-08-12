@@ -1,52 +1,47 @@
 {% extends "base.html" %} 
 
-{% block title %}Home{% endblock %} 
+{% block title %}Home{% endblock %}
 {% block content %}
-<style>
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    body {
-        background: linear-gradient(90deg, #e7a868 15%, #4f9fe5 85%);
-        color: white;
-        font-family: Arial, sans-serif;
-    }
-    .list-group {
-        padding: 0;
-        margin: 0;
-    }
-    .list-group-item {
-        background-color: #f8f9fa;
-        color: black;
-        border-radius: 10px; 
-        margin: 10px 0; 
-        padding: 15px; 
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    }
-    .grey-qo-regular {
-        font-family: "Grey Qo", cursive;
-        font-weight: 400;
-        font-style: normal;
-    }
-    h1 {
-        text-align: center;
-        font-family: Arial, sans-serif; 
-        font-size: 4em;
-    }
-    .highlight {
-        font-family: 'Grey Qo', cursive; 
-    }
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Grey+Qo&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: linear-gradient(45deg, #4b95b8 15%, #3785ca 85%);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .list-group {
+            padding: 0;
+            margin: 0;
+        }
+        .list-group-item {
+            background-color: #f8f9fa;
+            color: black;
+            border-radius: 10px; 
+            margin: 10px 0; 
+            padding: 15px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+        .grey-qo-regular {
+            font-family: "Grey Qo", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif; 
+            font-size: 4em;
+        }
+        .highlight {
+            font-family: 'Grey Qo', cursive; 
+        }
+    </style>
 
-<br/>
-<h1 class="highlight">
-    My vocabulary
-</h1>
+    <br/>   
+    My vocabulary <br/>
 
     <ul class="list-group list-group-flush" id="words">
         {% for word in user.words %}
