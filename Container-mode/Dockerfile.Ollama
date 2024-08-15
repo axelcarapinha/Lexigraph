@@ -1,0 +1,7 @@
+FROM ollama/ollama
+
+COPY run-ollama.sh /root/run-ollama.sh
+
+RUN chmod +x /root/run-ollama.sh
+
+ENTRYPOINT ["/root/run-ollama.sh"]

@@ -1,1 +1,3 @@
+ollama-data/*
+data/*
 .env

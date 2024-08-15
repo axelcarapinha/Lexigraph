@@ -1,12 +1,48 @@
-version: '3.8'
-
 services:
-  web:
-    build: .
+  lexigraph-website:
+    container_name: lexigraph-website
+    build:
+      dockerfile: Dockerfile.Flask
     ports:
-      - "5010:5000"
+      - "7654:5000" # expose a custom port to Flask's port
     env_file:
       - .env
     volumes:
       - ./data:/data
     working_dir: /app
+    networks:
+      - lexigraph-network
+  
+  ollama-container:
+    container_name: ollama-container
+    build:
+      dockerfile: Dockerfile.Ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama-data:/root/.ollama  # where llama3 is stored
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_ORIGINS=http://0.0.0.0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - lexigraph-network
+
+  lexigraph-api-ollama:
+    container_name: lexigraph-api-ollama
+    build:
+      dockerfile: Dockerfile.Api-Ollama
+    ports:
+      - "7653:7653" # allows testing from the localhost
+    networks: 
+      - lexigraph-network
+    depends_on:
+      - ollama-container
+
+networks:
+  lexigraph-network:
+    driver: bridge # every container is placed in this network
+  
+volumes:
+  ollama-data: {}

@@ -1,0 +1,6 @@
+langchain
+langchain-ollama
+ollama
+Flask
+Flask_restful
+gTTS

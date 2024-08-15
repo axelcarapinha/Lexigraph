@@ -26,7 +26,8 @@ ANKI_DECK_NAME = 'Example'
 
 URL_ABOUT_PAGE = "https://axelcarapinha.github.io/Lexigraph/"
 
-# Load secrets from the .env file
+# Load secrets from the environment variables
+#! NOT from the .env file
 DATABASE_NAME = os.getenv('DATABASE_NAME')
 SERVER_SECRET_KEY = os.getenv('SERVER_SECRET_KEY')
 AZURE_INSTRUMENTATION_KEY = os.getenv('AZURE_APP_INSIGHTS_INSTRUMENTATION_KEY')
