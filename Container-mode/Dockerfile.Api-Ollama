@@ -7,14 +7,14 @@ COPY requirements.Api-Ollama.txt ./
 RUN pip install --no-cache-dir -r requirements.Api-Ollama.txt
 
 # Copy the rest of the API's code
-COPY app-api /app/app
+COPY ./1_app-api/ /app/
 
 # For the API to accept HTTP requests 
 # (same as in the Azure JSON configuration file)
 EXPOSE 7653
 
-# Unbuffer outputs (like C's fflush(), but more generic) 
+# Unbuffer outputs (like C's fflush(), but more generic)
 # Allows for faster log outputs
 ENV PYTHONUNBUFFERED=1
 
-CMD ["python3", "app/main.py"]
+CMD ["python3", "main.py"]

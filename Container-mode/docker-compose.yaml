@@ -8,19 +8,22 @@ services:
     env_file:
       - .env
     volumes:
-      - ./data:/data
+      - ./0_data:/data
     working_dir: /app
     networks:
       - lexigraph-network
-  
+    
   ollama-container:
-    container_name: ollama-container
     build:
       dockerfile: Dockerfile.Ollama
+    container_name: ollama-container
     ports:
-      - "11434:11434"
+      - "11434:11434" # Expose port 11434 to the host (not strictly necessary for internal communication)
     volumes:
-      - ./ollama-data:/root/.ollama  # where llama3 is stored
+      - ./2_ollama-data:/root/.ollama  # where llama3 is stored
+    pull_policy: always
+    tty: true
+    restart: unless-stopped
     environment:
       - OLLAMA_HOST=0.0.0.0
       - OLLAMA_ORIGINS=http://0.0.0.0

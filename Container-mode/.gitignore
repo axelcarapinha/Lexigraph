@@ -1,3 +1,3 @@
-ollama-data/*
-data/*
+2_ollama-data/*
+0_data/*
 .env
