@@ -124,7 +124,7 @@ Had fun knowing more about:
 <br/>
 
 
-The Azure deployment must be deeply modified, because my student plan does _not_ allow everything I was using X'D. <br/>But learned about this along the way:
+The Azure deployment should be deeply modified, because my student plan does _not_ allow everything I was using X'D. <br/>But learned about this along the way:
 * Cloud deployments (using Microsoft Azure)
     * Web Applications
     * Container Registries
