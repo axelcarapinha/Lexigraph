@@ -1,3 +1,6 @@
 __pycache__/
 venv/
 .env
+0_audios/*
+0_data/*
+2_ollama-data/*
