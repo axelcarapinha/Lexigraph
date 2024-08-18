@@ -45,8 +45,9 @@ def get_word_info(user_context, word):
         return json.dumps(result["response"], indent=4)
     else:
         result = {"error": f"Request failed with status code {response.status_code}"}
-        print(json.dumps(result, indent=4))
-        return json.dumps(result, indent=4)
+        output = json.dumps(result, indent=4)
+        print(output)
+        return output, 500
         
 def get_word_pronounce(word, lang='en'):
     tts = gTTS(word, lang=lang) 

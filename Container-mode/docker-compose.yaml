@@ -12,6 +12,8 @@ services:
     working_dir: /app
     networks:
       - lexigraph-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     
   ollama-container:
     build:
@@ -42,6 +44,8 @@ services:
       - lexigraph-network
     depends_on:
       - ollama-container
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 networks:
   lexigraph-network:

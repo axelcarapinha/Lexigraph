@@ -26,14 +26,15 @@ function deleteWord(wordId) {
   });
 }
 
-function addCardToAnki(wordId) {
+function addCardToAnki(wordId) { //TODO add a config file for the url
+    
     // Requests permission to use AnkiConnect API (https://foosoft.net/projects/anki-connect/)
     const requestPermission = JSON.stringify({
         action: 'requestPermission',
         version: 6
     });
 
-    fetch('http://127.0.0.1:8765', { // assumes that Anki is running on the user machine
+    fetch('http://localhost:8765', { // assumes that Anki is running on the user machine
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -42,7 +43,8 @@ function addCardToAnki(wordId) {
     })
     .then(response => response.json())
     .then(permissionData => {
-        if (permissionData.permission === 'granted') {
+        console.log(permissionData); //TODO remove this
+        if (permissionData.result.permission === 'granted') {
 
             // Adds the card to Anki's database using Ankiconnect
             fetch(`/get-card-notes/${wordId}`)
@@ -70,7 +72,7 @@ function addCardToAnki(wordId) {
                 });
 
                 // Make a POST request to AnkiConnect's API
-                fetch('http://127.0.0.1:8765', {
+                fetch('http://localhost:8765', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
