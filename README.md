@@ -21,9 +21,9 @@ while keeping it self-hosted.
 <br/>
 Built upon <a href="https://www.youtube.com/watch?v=dam0GPOAvVI">this</a> website tutorial,
 using APIs from <a href="https://ollama.com/">Ollama</a> and <a href="https://foosoft.net/projects/anki-connect/">AnkiConnect</a>
-for my specific use case.
+for my specific use case (ease the Anki card-making process based on newly learned words I've been accumulating)
 <br/>
-The <u>main goal</u> was to learn more about APIs, Python and the cloud.
+Another goal was to learn more about APIs, Python and the cloud.
 
 ## Installation
 1. Install the <a href="https://docs.docker.com/engine/install/">Docker engine</a>
