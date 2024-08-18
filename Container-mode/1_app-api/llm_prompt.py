@@ -1,7 +1,7 @@
 import requests
+import json
 from langchain_core.prompts import ChatPromptTemplate
 from gtts import gTTS
-import json
 import os
 
 def get_word_info(user_context, word):
@@ -34,13 +34,20 @@ def get_word_info(user_context, word):
     # Check if the request was successful
     if response.status_code == 200:
         result = response.json()
+        if isinstance(result.get("response"), str):
+            try:
+                # Parses the nested JSON string
+                result["response"] = json.loads(result["response"])
+            except json.JSONDecodeError:
+                print("Failed to decode the 'response' field as JSON.")
+
+        print(json.dumps(result["response"], indent=4))
+        return json.dumps(result["response"], indent=4)
     else:
         result = {"error": f"Request failed with status code {response.status_code}"}
-    
-    #TODO parse the content correctly again
-    print(result.dialog[0])
-    return result
-    
+        print(json.dumps(result, indent=4))
+        return json.dumps(result, indent=4)
+        
 def get_word_pronounce(word, lang='en'):
     tts = gTTS(word, lang=lang) 
     audio_file = f'{word}.mp3'

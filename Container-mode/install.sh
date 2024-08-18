@@ -25,6 +25,22 @@ function detect_and_stop_same_container_name() {
     fi
 }
 
+# Allow the user to turn off Ollama's service (not the container version)
+if systemctl is-active --quiet ollama; then
+
+    if [[ "$SKIP_QUESTIONS" =~ ^[yY]$ ]]; then
+        read -p "Ollama service is running. Do you want to stop it? (y/n): " answer
+    fi
+
+    if [[ "$SKIP_QUESTIONS" =~ [yY]$ || "$answer" =~ ^[yY]$ ]]; then
+        echo "Stopping Ollama..."
+        sudo systemctl stop ollama
+        echo "Ollama service has been stopped."
+    fi
+else
+    echo "Ollama service is not running."
+fi
+
 # Make sure the needed names are available
 detect_and_stop_same_container_name "ollama-container"
 detect_and_stop_same_container_name "lexigraph-api-ollama"
