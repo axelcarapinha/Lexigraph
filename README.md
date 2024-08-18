@@ -138,7 +138,7 @@ The Azure deployment should be deeply modified, because my student plan does _no
 
 <br/>
 
-Other great features I'll probably leave to implement in future projects.
+Things I learned about other great features I'll probably leave to implement in future projects:
 * Passkeys 
     * theoretical foundations
     * challenges of applying into practice
