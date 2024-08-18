@@ -46,7 +46,7 @@ AZURE_APP_INSIGHTS_INSTRUMENTATION_KEY='this-is-not-needed-for-now'
 ```
 6. Running Lexigraph
 ```bash
-cd 
+cd Lexigraph
 sudo bash install.sh -y # remove the -y for it to wait for confirmation
 sudo docker-compose up --build
 ```
