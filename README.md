@@ -21,9 +21,9 @@ while keeping it self-hosted.
 <br/>
 Built upon <a href="https://www.youtube.com/watch?v=dam0GPOAvVI">this</a> website tutorial,
 using APIs from <a href="https://ollama.com/">Ollama</a> and <a href="https://foosoft.net/projects/anki-connect/">AnkiConnect</a>
-for my specific use case.
+for my specific use case (ease the Anki card-making process based on newly learned words I've been accumulating)
 <br/>
-The <u>main goal</u> was to learn more about APIs, Python and the cloud.
+Another goal was to learn more about APIs, Python and the cloud.
 
 ## Installation
 1. Install the <a href="https://docs.docker.com/engine/install/">Docker engine</a>
@@ -46,7 +46,7 @@ AZURE_APP_INSIGHTS_INSTRUMENTATION_KEY='this-is-not-needed-for-now'
 ```
 6. Running Lexigraph
 ```bash
-cd 
+cd Lexigraph
 sudo bash install.sh -y # remove the -y for it to wait for confirmation
 sudo docker-compose up --build
 ```
@@ -124,7 +124,7 @@ Had fun knowing more about:
 <br/>
 
 
-The Azure deployment must be deeply modified, because my student plan does _not_ allow everything I was using X'D. <br/>But learned about this along the way:
+The Azure deployment should be deeply modified, because my student plan does _not_ allow everything I was using X'D. <br/>But learned about this along the way:
 * Cloud deployments (using Microsoft Azure)
     * Web Applications
     * Container Registries
@@ -135,6 +135,10 @@ The Azure deployment must be deeply modified, because my student plan does _not_
     * Application Insights (integrated with Python logging)
     * Azure VNets (only the website was exposed to the public network, not the APIs)
     * How to optimize resource usage (was making that a logged visit would trigger a Runbook that would start Ollama's VM)
+
+<br/>
+
+Things I learned about other great features I'll probably leave to implement in future projects:
 * Passkeys 
     * theoretical foundations
     * challenges of applying into practice
