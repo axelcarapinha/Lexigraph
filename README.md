@@ -137,6 +137,7 @@ The Azure deployment should be deeply modified, because my student plan does _no
     * How to optimize resource usage (was making that a logged visit would trigger a Runbook that would start Ollama's VM)
 
 <br/>
+
 Other great features I'll probably leave to implement in future projects.
 * Passkeys 
     * theoretical foundations
