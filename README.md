@@ -135,6 +135,9 @@ The Azure deployment should be deeply modified, because my student plan does _no
     * Application Insights (integrated with Python logging)
     * Azure VNets (only the website was exposed to the public network, not the APIs)
     * How to optimize resource usage (was making that a logged visit would trigger a Runbook that would start Ollama's VM)
+
+<br/>
+Other great features I'll probably leave to implement in future projects.
 * Passkeys 
     * theoretical foundations
     * challenges of applying into practice
