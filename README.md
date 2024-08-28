@@ -44,6 +44,7 @@ DATABASE_NAME='database.db'
 SERVER_SECRET_KEY='a-secret-of-your-choice'
 AZURE_APP_INSIGHTS_INSTRUMENTATION_KEY='this-is-not-needed-for-now'
 ```
+7. Create the _.gitignore_ file and write _.env_ in it (also, don't forget to backup the credentials in a secure place)
 6. Running Lexigraph
 ```bash
 cd Lexigraph
