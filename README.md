@@ -1,6 +1,8 @@
 # Lexigraph
 Acquire vocabulary tailored to <u>you</u>.
 
+![logo-lexigraph](logo-lexigraph-4-rounded.png)
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -8,7 +10,7 @@ Acquire vocabulary tailored to <u>you</u>.
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#folder-structure">Folder Structure</a></li>
-    <li><a href="#results">Results</a></li>
+    <li><a href="#results">Results (video)</a></li>
     <li><a href="#what-i-learned-until-now">What I learned until now!</a></li>
   </ol>
 </details>
